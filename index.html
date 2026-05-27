@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dangormai — Barbecue Grill & Fries · Duliajan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark:    #141210;
+    --dark2:   #1e1b17;
+    --ember:   #E85D24;
+    --ember2:  #c94e1e;
+    --cream:   #F5EFE3;
+    --cream2:  #ede4d4;
+    --gold:    #C8922A;
+    --white:   #FFFFFF;
+    --muted:   #8a7f72;
+    --text:    #2a2219;
+    --serif:   'Playfair Display', Georgia, serif;
+    --sans:    'DM Sans', sans-serif;
+    --label:   'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--ember); border-radius: 3px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    transition: background .3s, backdrop-filter .3s, box-shadow .3s;
+  }
+  nav.scrolled {
+    background: rgba(20,18,16,0.92);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1;
+    text-decoration: none;
+  }
+  .nav-logo span:first-child {
+    font-family: var(--serif); font-size: 22px; font-weight: 900;
+    color: var(--white); letter-spacing: -0.02em;
+  }
+  .nav-logo span:last-child {
+    font-family: var(--label); font-size: 10px; font-weight: 500;
+    color: var(--ember); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: var(--label); font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ember); }
+  .nav-cta {
+    font-family: var(--label); font-size: 13px; font-weight: 600;
+    background: var(--ember); color: var(--white);
+    border: none; padding: 10px 22px; border-radius: 40px;
+    cursor: pointer; text-decoration: none; letter-spacing: 0.04em;
+    transition: background .2s, transform .15s;
+  }
+  .nav-cta:hover { background: var(--ember2); transform: translateY(-1px); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 6px; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: transform .3s, opacity .3s;
+  }
+  /* Mobile menu */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--dark); flex-direction: column;
+    align-items: center; justify-content: center; gap: 40px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--serif); font-size: 36px; font-weight: 700;
+    color: var(--white); text-decoration: none;
+    transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--ember); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(to bottom, rgba(14,12,10,0.65) 0%, rgba(14,12,10,0.4) 50%, rgba(14,12,10,0.75) 100%),
+      url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=85') center/cover no-repeat;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--label); font-size: 12px; font-weight: 600;
+    color: var(--ember); letter-spacing: 0.12em; text-transform: uppercase;
+    background: rgba(232,93,36,0.12); border: 1px solid rgba(232,93,36,0.35);
+    padding: 6px 16px; border-radius: 40px; margin-bottom: 28px;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-badge::before { content: "★"; font-size: 14px; }
+  #hero h1 {
+    font-family: var(--serif); font-size: clamp(42px, 8vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 1.05; max-width: 780px;
+    animation: fadeUp .8s .1s ease both;
+  }
+  #hero h1 em {
+    font-style: italic; color: var(--ember);
+  }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px); font-weight: 300;
+    color: rgba(255,255,255,0.72); max-width: 520px;
+    margin: 24px auto 40px; line-height: 1.75;
+    animation: fadeUp .8s .2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .btn-primary {
+    font-family: var(--label); font-size: 14px; font-weight: 600;
+    background: var(--ember); color: var(--white);
+    padding: 15px 32px; border-radius: 8px; border: none;
+    cursor: pointer; text-decoration: none; letter-spacing: 0.04em;
+    transition: background .2s, transform .15s;
+  }
+  .btn-primary:hover { background: var(--ember2); transform: translateY(-2px); }
+  .btn-outline {
+    font-family: var(--label); font-size: 14px; font-weight: 600;
+    background: transparent; color: var(--white);
+    padding: 15px 32px; border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    cursor: pointer; text-decoration: none; letter-spacing: 0.04em;
+    transition: background .2s, color .2s, border-color .2s, transform .15s;
+  }
+  .btn-outline:hover {
+    background: var(--white); color: var(--dark);
+    border-color: var(--white); transform: translateY(-2px);
+  }
+  .hero-trust {
+    display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
+    margin-top: 56px; animation: fadeUp .8s .4s ease both;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--label); font-size: 12px; font-weight: 500;
+    color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .trust-item svg { width: 16px; height: 16px; color: var(--ember); flex-shrink: 0; }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeUp .8s .5s ease both;
+  }
+  .hero-scroll span {
+    font-family: var(--label); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+  }
+  .scroll-line {
+    width: 1px; height: 40px; background: rgba(255,255,255,0.2);
+    position: relative; overflow: hidden;
+  }
+  .scroll-line::after {
+    content: ''; position: absolute; top: -40px; left: 0;
+    width: 100%; height: 40px; background: var(--ember);
+    animation: scrollDown 1.4s ease infinite;
+  }
+
+  /* ─── STATS BAR ─── */
+  #stats {
+    background: var(--ember);
+    padding: 28px 40px;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    max-width: 900px; margin: 0 auto; gap: 20px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--serif); font-size: 36px; font-weight: 900;
+    color: var(--white); line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--label); font-size: 11px; font-weight: 500;
+    color: rgba(255,255,255,0.75); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+
+  /* ─── SECTIONS COMMON ─── */
+  section { padding: 100px 40px; }
+  .eyebrow {
+    font-family: var(--label); font-size: 12px; font-weight: 600;
+    color: var(--ember); letter-spacing: 0.14em; text-transform: uppercase;
+    display: block; margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(32px, 5vw, 48px);
+    font-weight: 900; line-height: 1.1; color: var(--dark);
+  }
+  .section-title.light { color: var(--white); }
+  .section-sub {
+    font-size: 16px; font-weight: 300; color: var(--muted);
+    line-height: 1.8; max-width: 520px;
+  }
+  .section-sub.light { color: rgba(255,255,255,0.6); }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--cream); }
+  .about-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 16px; display: block;
+  }
+  .about-img-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--ember); color: var(--white);
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+    padding: 20px 24px; border-radius: 12px;
+    line-height: 1.3; text-align: center;
+    box-shadow: 0 8px 30px rgba(232,93,36,0.4);
+  }
+  .about-img-badge strong { font-size: 30px; display: block; }
+  .about-text { padding: 20px 0; }
+  .about-text p {
+    font-size: 16px; font-weight: 300; color: #4a3f32;
+    line-height: 1.85; margin: 20px 0 32px;
+  }
+  .about-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    font-family: var(--label); font-size: 12px; font-weight: 500;
+    color: var(--text); border: 1.5px solid var(--cream2);
+    background: var(--white); padding: 7px 16px; border-radius: 40px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── MENU ─── */
+  #menu { background: var(--white); }
+  .menu-inner { max-width: 1100px; margin: 0 auto; }
+  .menu-header { text-align: center; margin-bottom: 56px; }
+  .menu-header .section-sub { margin: 14px auto 0; }
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .menu-card {
+    background: var(--cream); border-radius: 16px;
+    overflow: hidden; border: 1px solid var(--cream2);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+  .menu-card-img {
+    width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;
+  }
+  .menu-card-body { padding: 18px 20px 20px; }
+  .menu-tag {
+    font-family: var(--label); font-size: 10px; font-weight: 600;
+    color: var(--ember); background: rgba(232,93,36,0.1);
+    padding: 3px 10px; border-radius: 20px; letter-spacing: 0.1em;
+    text-transform: uppercase; display: inline-block; margin-bottom: 10px;
+  }
+  .menu-name {
+    font-family: var(--serif); font-size: 20px; font-weight: 700;
+    color: var(--dark); line-height: 1.2; margin-bottom: 6px;
+  }
+  .menu-desc {
+    font-size: 13px; font-weight: 300; color: var(--muted);
+    line-height: 1.6;
+  }
+  .menu-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 14px;
+  }
+  .menu-price {
+    font-family: var(--label); font-size: 16px; font-weight: 600;
+    color: var(--gold);
+  }
+  .menu-order-btn {
+    font-family: var(--label); font-size: 12px; font-weight: 600;
+    color: var(--ember); background: rgba(232,93,36,0.1);
+    border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer;
+    transition: background .2s;
+    text-decoration: none;
+  }
+  .menu-order-btn:hover { background: rgba(232,93,36,0.2); }
+  .menu-cta-wrap { text-align: center; margin-top: 48px; }
+  .btn-outline-dark {
+    font-family: var(--label); font-size: 14px; font-weight: 600;
+    color: var(--ember); background: transparent;
+    border: 1.5px solid var(--ember); padding: 14px 36px; border-radius: 8px;
+    cursor: pointer; text-decoration: none; letter-spacing: 0.04em;
+    transition: background .2s, color .2s;
+  }
+  .btn-outline-dark:hover { background: var(--ember); color: var(--white); }
+
+  /* ─── WHY US ─── */
+  #why { background: var(--dark); }
+  .why-inner { max-width: 1100px; margin: 0 auto; }
+  .why-header { text-align: center; margin-bottom: 60px; }
+  .why-header .section-sub { margin: 14px auto 0; }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left: 3px solid var(--ember);
+    border-radius: 12px; padding: 32px 28px;
+    transition: background .2s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.07); }
+  .why-icon {
+    width: 44px; height: 44px; background: rgba(232,93,36,0.12);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .why-icon svg { width: 22px; height: 22px; color: var(--ember); }
+  .why-card h3 {
+    font-family: var(--sans); font-size: 17px; font-weight: 500;
+    color: var(--white); margin-bottom: 10px;
+  }
+  .why-card p {
+    font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+  }
+
+  /* ─── REVIEWS ─── */
+  #reviews { background: var(--cream); }
+  .reviews-inner { max-width: 1100px; margin: 0 auto; }
+  .reviews-header { text-align: center; margin-bottom: 56px; }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .review-card {
+    background: var(--white); border-radius: 16px;
+    padding: 28px 24px; border: 1px solid var(--cream2);
+    position: relative;
+  }
+  .review-quote {
+    position: absolute; top: 20px; right: 24px;
+    font-family: var(--serif); font-size: 60px; font-weight: 900;
+    color: rgba(232,93,36,0.1); line-height: 1;
+  }
+  .review-stars { color: var(--gold); font-size: 15px; margin-bottom: 14px; }
+  .review-text {
+    font-size: 15px; font-weight: 300; color: #4a3f32;
+    line-height: 1.75; margin-bottom: 20px;
+    font-style: italic;
+  }
+  .review-author {
+    font-family: var(--label); font-size: 13px; font-weight: 600;
+    color: var(--dark);
+  }
+  .review-role {
+    font-family: var(--label); font-size: 11px; color: var(--muted);
+    letter-spacing: 0.06em; margin-top: 2px;
+  }
+  .rating-summary {
+    text-align: center; margin-top: 48px;
+    font-family: var(--label); font-size: 14px; color: var(--muted);
+  }
+  .rating-big {
+    font-family: var(--serif); font-size: 52px; font-weight: 900;
+    color: var(--dark); line-height: 1;
+  }
+  .rating-stars-big { color: var(--gold); font-size: 20px; margin: 8px 0 6px; }
+
+  /* ─── CTA BANNER ─── */
+  #cta-banner {
+    background:
+      linear-gradient(135deg, rgba(14,12,10,0.92) 0%, rgba(20,18,16,0.85) 100%),
+      url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&q=80') center/cover no-repeat;
+    text-align: center; padding: 120px 40px;
+  }
+  #cta-banner h2 {
+    font-family: var(--serif); font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900; color: var(--white); line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  #cta-banner h2 em { color: var(--ember); font-style: italic; }
+  #cta-banner p {
+    font-size: 17px; font-weight: 300;
+    color: rgba(255,255,255,0.65); margin-bottom: 40px;
+  }
+  #cta-banner .hero-btns { justify-content: center; }
+
+  /* ─── VISIT ─── */
+  #visit { background: var(--cream); }
+  .visit-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px;
+    align-items: start;
+  }
+  .visit-info h2 {
+    font-family: var(--serif); font-size: 40px; font-weight: 900;
+    color: var(--dark); margin-bottom: 32px; line-height: 1.1;
+  }
+  .info-row {
+    display: flex; gap: 14px; margin-bottom: 20px; align-items: flex-start;
+  }
+  .info-icon {
+    width: 36px; height: 36px; background: rgba(232,93,36,0.1);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .info-icon svg { width: 18px; height: 18px; color: var(--ember); }
+  .info-text strong {
+    font-family: var(--label); font-size: 13px; font-weight: 600;
+    color: var(--dark); letter-spacing: 0.04em; display: block;
+    margin-bottom: 2px;
+  }
+  .info-text span {
+    font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.6;
+  }
+  .services-row {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px;
+  }
+  .service-chip {
+    font-family: var(--label); font-size: 12px; font-weight: 500;
+    color: var(--text); border: 1.5px solid var(--cream2);
+    background: var(--white); padding: 7px 14px; border-radius: 40px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .service-chip svg { width: 14px; height: 14px; color: var(--ember); }
+  .map-wrap {
+    border-radius: 16px; overflow: hidden;
+    height: 400px; background: var(--cream2);
+    border: 1px solid var(--cream2); position: relative;
+  }
+  .map-wrap iframe {
+    width: 100%; height: 100%; border: none; display: block;
+  }
+  .map-placeholder {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    background: linear-gradient(135deg, #e8dfd0, #d6ccbf);
+  }
+  .map-placeholder svg { width: 40px; height: 40px; color: var(--ember); opacity: 0.7; }
+  .map-placeholder p {
+    font-family: var(--label); font-size: 13px; color: var(--muted); text-align: center;
+    line-height: 1.5;
+  }
+  .map-btn {
+    font-family: var(--label); font-size: 13px; font-weight: 600;
+    background: var(--ember); color: var(--white);
+    padding: 10px 20px; border-radius: 6px; border: none;
+    cursor: pointer; text-decoration: none; margin-top: 4px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer { background: #0d0b09; padding: 64px 40px 32px; }
+  .footer-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-brand span:first-child {
+    font-family: var(--serif); font-size: 24px; font-weight: 900;
+    color: var(--white); display: block; margin-bottom: 4px;
+  }
+  .footer-brand span:last-child {
+    font-family: var(--label); font-size: 10px; font-weight: 500;
+    color: var(--ember); letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .footer-desc {
+    font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.45);
+    line-height: 1.8; margin-top: 16px; max-width: 260px;
+  }
+  .footer-col h4 {
+    font-family: var(--label); font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.4); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a, .footer-col ul li span {
+    font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.6);
+    text-decoration: none; transition: color .2s;
+  }
+  .footer-col ul li a:hover { color: var(--ember); }
+  .footer-bottom {
+    max-width: 1100px; margin: 28px auto 0;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p {
+    font-family: var(--label); font-size: 12px; color: rgba(255,255,255,0.25);
+  }
+  .footer-dot { color: var(--ember); margin: 0 4px; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollDown {
+    0%   { top: -40px; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    section { padding: 72px 24px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-img-badge { bottom: 16px; right: 16px; }
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .visit-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    nav { padding: 0 20px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .menu-grid { grid-template-columns: 1fr; }
+    section { padding: 56px 18px; }
+    #cta-banner { padding: 80px 18px; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 260px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <span>Dangormai</span>
+    <span>Grill · BBQ · Fries</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit">Find Us</a></li>
+  </ul>
+  <a class="nav-cta" href="tel:07399548113">Order Now</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#menu" onclick="closeMobile()">Menu</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#visit" onclick="closeMobile()">Find Us</a>
+  <a href="tel:07399548113" style="color:var(--ember)">073995 48113</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">4.2 Rated · Duliajan's Favourite Grill</div>
+  <h1>Where Every Bite Is<br>Grilled to <em>Perfection</em></h1>
+  <p class="hero-sub">Freshly cooked BBQ, crispy grill fries, and flavours that bring Duliajan families back — every single time.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#menu">View Our Menu</a>
+    <a class="btn-outline" href="#visit">Get Directions</a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Family Friendly
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3V8Z"/></svg>
+      Dine-In & Delivery
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Open Till 10:30 PM
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-num" data-count="4.2" data-decimal="1">0</div>
+      <div class="stat-label">Google Rating ★</div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="stat-num" data-count="91" data-suffix="+">0</div>
+      <div class="stat-label">Happy Reviews</div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="stat-num" data-prefix="₹" data-count="200">0</div>
+      <div class="stat-label">Starting From</div>
+    </div>
+    <div class="reveal reveal-delay-3">
+      <div class="stat-num">10:30</div>
+      <div class="stat-label">Open Until (PM)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap reveal">
+      <img class="about-img"
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
+        alt="Dangormai restaurant interior — warm welcoming ambiance">
+      <div class="about-img-badge">
+        <strong>4.2★</strong>
+        Duliajan's<br>Favourite Grill
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-2">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="section-title">A Grill House Built<br>for Families</h2>
+      <p>Dangormai started with one simple belief — great food doesn't need to be expensive. Nestled in the heart of Duliajan, we've been serving freshly grilled BBQ, crispy fries, and handcrafted snacks to families, friends, and food lovers who know good taste.</p>
+      <p>Our kitchen runs on real ingredients, real care, and a genuine love for the grill. Every dish is made fresh to order — because you deserve better than reheated.</p>
+      <div class="about-pills">
+        <span class="pill">Freshly Cooked to Order</span>
+        <span class="pill">Friendly Staff</span>
+        <span class="pill">Budget-Friendly</span>
+        <span class="pill">Family Atmosphere</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-inner">
+    <div class="menu-header">
+      <span class="eyebrow">What's Cooking</span>
+      <h2 class="section-title">Menu Highlights</h2>
+      <p class="section-sub">Our most-loved dishes — made fresh, served hot, priced right.</p>
+    </div>
+    <div class="menu-grid">
+
+      <div class="menu-card reveal">
+        <img class="menu-card-img"
+          src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&q=80"
+          alt="Pork BBQ Stick — smoky marinated pork">
+        <div class="menu-card-body">
+          <span class="menu-tag">BBQ</span>
+          <div class="menu-name">Pork BBQ Stick</div>
+          <div class="menu-desc">Smoky marinated pork grilled over open flame to perfection</div>
+          <div class="menu-footer">
+            <span class="menu-price">₹80–120</span>
+            <a class="menu-order-btn" href="tel:07399548113">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-1">
+        <img class="menu-card-img"
+          src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&q=80"
+          alt="Grill Fries — crispy seasoned fries">
+        <div class="menu-card-body">
+          <span class="menu-tag">Sides</span>
+          <div class="menu-name">Grill Fries</div>
+          <div class="menu-desc">Crispy seasoned fries, golden and freshly made every time</div>
+          <div class="menu-footer">
+            <span class="menu-price">₹60–80</span>
+            <a class="menu-order-btn" href="tel:07399548113">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-2">
+        <img class="menu-card-img"
+          src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600&q=80"
+          alt="Chicken Tandoori — chargrilled spiced chicken">
+        <div class="menu-card-body">
+          <span class="menu-tag">BBQ</span>
+          <div class="menu-name">Chicken Tandoori</div>
+          <div class="menu-desc">Chargrilled chicken with bold tandoori spices and smoky aroma</div>
+          <div class="menu-footer">
+            <span class="menu-price">₹120–180</span>
+            <a class="menu-order-btn" href="tel:07399548113">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal">
+        <img class="menu-card-img"
+          src="https://images.unsplash.com/photo-1598514983318-2f64f8f4796c?w=600&q=80"
+          alt="Chicken Popcorn — crispy bite-sized chicken">
+        <div class="menu-card-body">
+          <span class="menu-tag">Snacks</span>
+          <div class="menu-name">Chicken Popcorn</div>
+          <div class="menu-desc">Bite-sized crispy chicken — the undisputed crowd favourite</div>
+          <div class="menu-footer">
+            <span class="menu-price">₹80–100</span>
+            <a class="menu-order-btn" href="tel:07399548113">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-1">
+        <img class="menu-card-img"
+          src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600&q=80"
+          alt="French Fries — classic golden fries">
+        <div class="menu-card-body">
+          <span class="menu-tag">Sides</span>
+          <div class="menu-name">French Fries</div>
+          <div class="menu-desc">Classic fries, always hot, always right, always satisfying</div>
+          <div class="menu-footer">
+            <span class="menu-price">₹50–70</span>
+            <a class="menu-order-btn" href="tel:07399548113">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-2">
+        <img class="menu-card-img"
+          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
+          alt="Coffee — hot brewed freshly">
+        <div class="menu-card-body">
+          <span class="menu-tag">Drinks</span>
+          <div class="menu-name">Coffee</div>
+          <div class="menu-desc">Hot brewed coffee — the perfect way to end your meal</div>
+          <div class="menu-footer">
+            <span class="menu-price">₹40–60</span>
+            <a class="menu-order-btn" href="tel:07399548113">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="menu-cta-wrap reveal">
+      <a class="btn-outline-dark" href="tel:07399548113">Call to Check Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-inner">
+    <div class="why-header">
+      <span class="eyebrow">Why Dangormai</span>
+      <h2 class="section-title light">More Than Just a Meal</h2>
+      <p class="section-sub light" style="margin:14px auto 0">Four reasons Duliajan keeps coming back to us.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c0 6-8 8-8 14a8 8 0 0 0 16 0c0-6-8-8-8-14Z"/></svg>
+        </div>
+        <h3>Freshly Grilled Every Time</h3>
+        <p>No pre-cooked shortcuts. Every dish leaves our kitchen hot off the grill — because flavour is non-negotiable.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Family-Friendly Atmosphere</h3>
+        <p>A warm, welcoming space where families feel at home. Our staff is friendly, attentive, and genuinely happy to serve.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Budget-Friendly Pricing</h3>
+        <p>Full meals from ₹200 per person. Great food shouldn't break the bank — and at Dangormai, it never does.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Open Late for You</h3>
+        <p>We're open until 10:30 PM — because cravings don't follow a schedule. Come for dinner, stay for dessert.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <span class="eyebrow">What People Say</span>
+      <h2 class="section-title">Real Food. Real Smiles.</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Nice ambiance, great service, and the owner has wonderful behaviour. Will definitely be back — one of the best in Duliajan.</p>
+        <div class="review-author">Verified Diner</div>
+        <div class="review-role">Google Review</div>
+      </div>
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Delicious freshly cooked veg and non-veg dishes at budget-friendly prices. 100% recommended to anyone looking for honest, great food.</p>
+        <div class="review-author">Roshan</div>
+        <div class="review-role">Google Review</div>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">The coffee was exactly to my liking, the French fries were good, and the staff were very friendly. A welcoming atmosphere overall.</p>
+        <div class="review-author">Ankita M.</div>
+        <div class="review-role">Local Guide · 99 Reviews</div>
+      </div>
+    </div>
+    <div class="rating-summary reveal">
+      <div class="rating-big">4.2</div>
+      <div class="rating-stars-big">★★★★☆</div>
+      <p>Based on <strong>91 Google Reviews</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta-banner">
+  <h2>Come Hungry.<br><em>Leave Happy.</em></h2>
+  <p>Dine in, drive-through, or order for delivery — we've got you covered.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="tel:07399548113">📞 Call to Reserve</a>
+    <a class="btn-outline" href="https://www.google.com/maps/search/Dangormai+Barbecue+Grill+Fries+Duliajan" target="_blank" rel="noopener">Get Directions</a>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="visit-inner">
+    <div class="visit-info reveal">
+      <span class="eyebrow">Find Us</span>
+      <h2>We're Right<br>Here in Duliajan</h2>
+      <div class="info-row">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="info-text">
+          <strong>Address</strong>
+          <span>98F7+M27, Duliajan,<br>Assam 786692</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7a2 2 0 0 1 1.72 2.03Z"/></svg>
+        </div>
+        <div class="info-text">
+          <strong>Phone</strong>
+          <span><a href="tel:07399548113" style="color:var(--ember);text-decoration:none;font-weight:500">073995 48113</a></span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="info-text">
+          <strong>Hours</strong>
+          <span>Open daily — until 10:30 PM<br><em style="font-size:12px;color:var(--muted)">Call ahead on busy evenings</em></span>
+        </div>
+      </div>
+      <div class="services-row">
+        <span class="service-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          Dine-In
+        </span>
+        <span class="service-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 5 3-5 3V8Z"/></svg>
+          Drive-Through
+        </span>
+        <span class="service-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12H19M12 5l7 7-7 7"/></svg>
+          Delivery
+        </span>
+      </div>
+    </div>
+    <div class="map-wrap reveal reveal-delay-2">
+      <div class="map-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <p>Dangormai BBQ Grill Fries<br>Duliajan, Assam 786692</p>
+        <a class="map-btn" href="https://www.google.com/maps/search/Dangormai+Barbecue+Grill+Fries+Duliajan+Assam" target="_blank" rel="noopener">Open in Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span>Dangormai</span>
+      <span>Grill · BBQ · Fries</span>
+      <p class="footer-desc">Duliajan's home for freshly grilled BBQ and fries. Serving families with love since day one.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Find Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📍 Duliajan, Assam 786692</span></li>
+        <li><span>📞 <a href="tel:07399548113" style="color:rgba(255,255,255,0.6)">073995 48113</a></span></li>
+        <li><span>🕙 Open till 10:30 PM</span></li>
+        <li><span>₹200–400 per person</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dangormai Barbecue Grill Fries<span class="footer-dot">·</span>All rights reserved.</p>
+    <p>Made with ❤️ for Duliajan</p>
+  </div>
+</footer>
+
+<script>
+  /* NAV scroll effect */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* Hamburger */
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => mob.classList.toggle('open'));
+  function closeMobile() { mob.classList.remove('open'); }
+
+  /* Reveal on scroll */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  /* Count-up for stats */
+  const counters = document.querySelectorAll('[data-count]');
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.dataset.count);
+      const decimal = parseInt(el.dataset.decimal || '0');
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const duration = 1200;
+      const steps = 40;
+      const increment = target / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = prefix + current.toFixed(decimal) + suffix;
+      }, duration / steps);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => countObserver.observe(el));
+</script>
+</body>
+</html>
